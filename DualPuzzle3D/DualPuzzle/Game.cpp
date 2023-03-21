@@ -1,14 +1,21 @@
 ﻿#include "Game.h"
+
 #include "Actor.h"
-#include "Timer.h"
+#include "FPSActor.h"
+#include "FollowActor.h"
+
 #include "Assets.h"
 #include "MeshComponent.h"
+#include "AudioComponent.h"
+
 #include "Cube.h"
 #include "Sphere.h"
 #include "Plane.h"
-#include "AudioComponent.h"
-#include "FPSActor.h"
-#include "FollowActor.h"
+
+#include "Timer.h"
+
+// Game specific includes
+#include "Level.h"
 
 
 bool Game::initialize()
@@ -41,6 +48,7 @@ void Game::load()
 	Assets::loadTexture(renderer, "Res\\Textures\\Sphere.png", "Sphere");
 
 	// -- Game specific textures --
+	Assets::loadTexture(renderer, "Res\\Textures\\BackgroundTest.png", "BackgroundTest");
 
 	// MESHES ===============================
 	// -- Basic meshes --
@@ -89,6 +97,28 @@ void Game::load()
 
 	// Start music
 	musicEvent = audioSystem.playEvent("event:/Music");
+
+	//v =============================================================╗
+	//v Tests                                                        ║
+
+	//#include "FPSActor.h"
+
+	//FPSActor* testActor = new FPSActor();
+
+	//vector<Component*> components = testActor->getComponents();
+
+	//for (Component* component : components)
+	//{
+	//	std::cout << component->getComponentName() << " Component\n";
+	//}
+
+	// MeshComponent* testMesh = new MeshComponent(testActor); // <--- LNK 2019 error
+
+	Level level{ 8, 10 };
+	level.generateLevel();
+
+	//^ Tests                                                        ║
+	//^ =============================================================╝
 }
 
 void Game::processInput()

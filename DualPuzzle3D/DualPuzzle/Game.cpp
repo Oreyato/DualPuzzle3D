@@ -48,7 +48,16 @@ void Game::load()
 	Assets::loadTexture(renderer, "Res\\Textures\\Sphere.png", "Sphere");
 
 	// -- Game specific textures --
-	Assets::loadTexture(renderer, "Res\\Textures\\BackgroundTest.png", "BackgroundTest");
+	Assets::loadTexture(renderer, "Res\\Textures\\Background.png", "Background");
+
+	Assets::loadTexture(renderer, "Res\\Textures\\A_Start.png", "A_Start");
+	Assets::loadTexture(renderer, "Res\\Textures\\A_End.png", "A_End");
+
+	Assets::loadTexture(renderer, "Res\\Textures\\B_Start.png", "B_Start");
+	Assets::loadTexture(renderer, "Res\\Textures\\B_End.png", "B_End");
+
+	Assets::loadTexture(renderer, "Res\\Textures\\Obstacle.png", "Obstacle");
+	Assets::loadTexture(renderer, "Res\\Textures\\Limit.png", "Limit");
 
 	// MESHES ===============================
 	// -- Basic meshes --
@@ -101,16 +110,16 @@ void Game::load()
 	//v =============================================================╗
 	//v Tests                                                        ║
 
-	//#include "FPSActor.h"
+	#include "FPSActor.h"
 
-	//FPSActor* testActor = new FPSActor();
+	FPSActor* testActor = new FPSActor();
 
-	//vector<Component*> components = testActor->getComponents();
+	vector<Component*> components = testActor->getComponents();
 
-	//for (Component* component : components)
-	//{
-	//	std::cout << component->getComponentName() << " Component\n";
-	//}
+	for (Component* component : components)
+	{
+		std::cout << component->getComponentName() << " Component\n";
+	}
 
 	// MeshComponent* testMesh = new MeshComponent(testActor); // <--- LNK 2019 error
 

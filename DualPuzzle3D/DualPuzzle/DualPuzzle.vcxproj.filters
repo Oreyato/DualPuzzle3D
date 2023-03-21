@@ -46,6 +46,12 @@
     <Filter Include="Engine\UI">
       <UniqueIdentifier>{f5610995-ebdb-450e-8d6d-fec8d1a75a7e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Prefabs">
+      <UniqueIdentifier>{1dec5335-f7a7-405c-98a5-f9fd8cdaa5f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Utils">
+      <UniqueIdentifier>{87528921-55e5-48ba-bb3d-d5100ca6224b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -171,6 +177,12 @@
     </ClCompile>
     <ClCompile Include="Font.cpp">
       <Filter>Engine\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Game\Prefabs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -308,6 +320,15 @@
     </ClInclude>
     <ClInclude Include="Font.h">
       <Filter>Engine\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Game\Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="Consts.h">
+      <Filter>Game\Utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

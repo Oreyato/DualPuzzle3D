@@ -1,11 +1,9 @@
 #pragma once
 
-class Consts
+namespace Consts
 {
-public:
-	// -- Tile --
-	static const float TILE_LENGTH;
-	static const float TILE_WIDTH;
-
+	namespace Tile {
+		static const float LENGTH{ 128.0f };
+		static const float WIDTH{ 128.0f };
+	}
 };
-

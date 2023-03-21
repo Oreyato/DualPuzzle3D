@@ -1,5 +1,7 @@
 #pragma once
 #include "Component.h"
+
+
 class MoveComponent : public Component
 {
 public:
@@ -18,6 +20,7 @@ public:
 
 	void update(float dt) override;
 
+	inline std::string getComponentName() override { return "Move"; }
 
 private:
 	float forwardSpeed;

@@ -116,6 +116,16 @@ void Actor::update(float dt)
 	}
 }
 
+template<typename T>
+T* Actor::getComponent()
+{
+	for (Component* component : components) {
+		if (component->getComponentName() == T->getComponentName()) return component;
+	}
+
+	return nullptr;
+}
+
 void Actor::updateComponents(float dt)
 {
 	for (auto component : components)

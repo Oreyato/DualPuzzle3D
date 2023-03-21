@@ -1,6 +1,9 @@
 #pragma once
 #include <SDL_stdinc.h>
 
+#include <string>
+
+
 class Actor;
 
 class Component
@@ -17,6 +20,8 @@ public:
 	virtual void processInput(const struct InputState& inputState);
 	virtual void update(float dt);
 	virtual void onUpdateWorldTransform() {}
+
+	virtual std::string getComponentName();
 
 protected:
 	Actor& owner;

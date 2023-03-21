@@ -21,3 +21,8 @@ void Component::processInput(const InputState& inputState)
 void Component::update(float dt)
 {
 }
+
+std::string Component::getComponentName()
+{
+	return "Default";
+}

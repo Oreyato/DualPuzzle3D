@@ -43,8 +43,14 @@ public:
 	void processInput(const struct InputState& inputState);
 	virtual void actorInput(const struct InputState& inputState);
 	void update(float dt);
-	void updateComponents(float dt);
 	virtual void updateActor(float dt);
+
+	inline vector<Component*> getComponents() { return components; }
+
+	template <typename T>
+	T* getComponent();
+
+	void updateComponents(float dt);
 	void addComponent(Component* component);
 	void removeComponent(Component* component);
 
@@ -59,4 +65,3 @@ private:
 
 	vector<Component*> components;
 };
-

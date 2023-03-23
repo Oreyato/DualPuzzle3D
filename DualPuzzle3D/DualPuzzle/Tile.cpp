@@ -3,48 +3,18 @@
 #include "Assets.h"
 
 
-Tile::Tile(float widthP, float heightP) :
+Tile::Tile(float widthP, float heightP, TileType typeP) :
 	width{ widthP },
-	height{ heightP }
+	height{ heightP },
+	type{ typeP }
 {
-	texture = Assets::getTexture("Default");
-
-	spriteComponent = new SpriteComponent(this, texture);
+	meshComponent = new MeshComponent(this);
+	meshComponent->setMesh(Assets::getMesh("Mesh_Tile"));
 
 	setTexture();
 }
 
 void Tile::setTexture()
 {
-	std::string textureName{ "" };
-
-	switch (type)
-	{
-	case BACKGROUND:
-		textureName = "Background";
-		break;
-	case A_START:
-		textureName = "A_Start";
-		break;
-	case A_END:
-		textureName = "A_End";
-		break;
-	case B_START:
-		textureName = "B_Start";
-		break;
-	case B_END:
-		textureName = "B_End";
-		break;
-	case OBSTACLE:
-		textureName = "Obstacle";
-		break;
-	case LIMIT:
-		textureName = "Limit";
-		break;
-	default:
-		textureName = "Default";
-		break;
-	}
-
-	spriteComponent->setTexture(Assets::getTexture(textureName));
+	meshComponent->setTextureIndex(type);
 }

@@ -22,6 +22,9 @@ public:
 	void addTexture(Texture* texture);
 	Texture* getTexture(int index);
 
+	void setTexture(Texture* textureP);
+	void setTextures(vector<Texture*> texturesP);
+
 	void setVertexArray(VertexArray* vertexArrayP);
 	void setShaderName(const string& shaderNameP);
 	void setRadius(float radiusP);

@@ -32,6 +32,17 @@ Texture* Mesh::getTexture(int index)
 	}
 }
 
+void Mesh::setTexture(Texture* textureP)
+{
+	textures.clear();
+	textures.emplace_back(textureP);
+}
+
+void Mesh::setTextures(vector<Texture*> texturesP)
+{
+	textures = texturesP;
+}
+
 void Mesh::setVertexArray(VertexArray* vertexArrayP)
 {
 	vertexArray = vertexArrayP;

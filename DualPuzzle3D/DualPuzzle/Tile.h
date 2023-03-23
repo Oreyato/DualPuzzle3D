@@ -2,9 +2,12 @@
 #include "Actor.h"
 
 #include "SpriteComponent.h"
+#include "MeshComponent.h"
 
 
 enum TileType {
+	DEFAULT,
+
 	BACKGROUND,
 
 	A_START,
@@ -20,7 +23,7 @@ enum TileType {
 class Tile : public Actor
 {
 public:
-	Tile(float widthP, float heightP);
+	Tile(float widthP, float heightP, TileType typeP = TileType::DEFAULT);
 
 	inline const TileType getType() { return type; }
 	inline void setType(TileType typeP) { type = typeP; }
@@ -31,9 +34,8 @@ private:
 
 	TileType type{ BACKGROUND };
 
-	class SpriteComponent* spriteComponent;
-	Texture texture;
-
 	void setTexture();
+
+	class MeshComponent* meshComponent;
 };
 

@@ -20,10 +20,11 @@ void Level::generateLevel()
 	for (int row = 0; row < rows; row++)
 	{
 		for (int col = 0; col < columns; col++) {
-			Tile* tile = new Tile(tileWidth, tileLength);
+			Tile* tile = new Tile(tileWidth, tileLength, TileType::A_END);
 			Vector3 tilePosition{ row * tileWidth, col * tileLength, 0.0f };
 
 			tile->setPosition(tilePosition);
+			tile->setType(TileType::A_START);
 
 			level.push_back(tile);
 		}

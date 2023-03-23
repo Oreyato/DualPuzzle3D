@@ -66,6 +66,7 @@ void Game::load()
 	Assets::loadMesh("Res\\Meshes\\BasicMeshes\\Sphere.gpmesh", "Mesh_Sphere");
 
 	// -- Game specific meshes --
+	Assets::loadMesh("Res\\Meshes\\Tile.gpmesh", "Mesh_Tile");
 
 	//^ Load Shaders/Textures/Meshes                                 ║
 	//^ =============================================================╝
@@ -73,23 +74,23 @@ void Game::load()
 	//v Place actors                                                 ║
 
 	Cube* testCube = new Cube();
-	testCube->setPosition(Vector3(200.0f, 105.0f, 0.0f));
+	testCube->setPosition(Vector3(50.0f, 0.0f, 0.0f));
 	testCube->setScale(100.0f);
 	Quaternion q(Vector3::unitY, -Maths::piOver2);
 	q = Quaternion::concatenate(q, Quaternion(Vector3::unitZ, Maths::pi + Maths::pi / 4.0f));
 	testCube->setRotation(q);
 
 	// Setup floor ==========================
-	const float start = -1250.0f;
-	const float size = 250.0f;
-	for (int i = 0; i < 10; i++)
-	{
-		for (int j = 0; j < 10; j++)
-		{
-			Plane* p = new Plane();
-			p->setPosition(Vector3(start + i * size, start + j * size, 0.0f));
-		}
-	}
+	//const float start = -1250.0f;
+	//const float size = 250.0f;
+	//for (int i = 0; i < 10; i++)
+	//{
+	//	for (int j = 0; j < 10; j++)
+	//	{
+	//		Plane* p = new Plane();
+	//		p->setPosition(Vector3(start + i * size, start + j * size, 0.0f));
+	//	}
+	//}
 
 	//^ Place actors                                                 ║
 	//^ =============================================================╝
@@ -110,20 +111,18 @@ void Game::load()
 	//v =============================================================╗
 	//v Tests                                                        ║
 
-	#include "FPSActor.h"
+	//FPSActor* testActor = new FPSActor();
 
-	FPSActor* testActor = new FPSActor();
+	//vector<Component*> components = testActor->getComponents();
 
-	vector<Component*> components = testActor->getComponents();
-
-	for (Component* component : components)
-	{
-		std::cout << component->getComponentName() << " Component\n";
-	}
+	//for (Component* component : components)
+	//{
+	//	std::cout << component->getComponentName() << " Component\n";
+	//}
 
 	// MeshComponent* testMesh = new MeshComponent(testActor); // <--- LNK 2019 error
 
-	Level level{ 8, 10 };
+	Level level{ 10, 10 };
 	level.generateLevel();
 
 	//^ Tests                                                        ║

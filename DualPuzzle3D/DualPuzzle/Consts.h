@@ -12,8 +12,8 @@ namespace Consts
 	}
 
 	namespace Tile {
-		static const float SCALE{ 128.0f };
-		static const float LENGTH{ 128.0f };
-		static const float WIDTH{ 128.0f };
+		static const float SCALE{ 1.0f };
+		static const float LENGTH{ 100.0f };
+		static const float WIDTH{ 100.0f };
 	}
 };

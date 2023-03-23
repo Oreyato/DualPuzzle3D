@@ -25,7 +25,7 @@ void Level::generateLevel()
 	for (int row = 0; row < rows; row++)
 	{
 		for (int col = 0; col < columns; col++) {
-			Tile* tile = new Tile(tileWidth, tileLength, TileType::A_END);
+			Tile* tile = new Tile(tileWidth, tileLength, TileType::BACKGROUND);
 			Vector3 tilePosition{ row * tileWidth - offset.x, col * tileLength - offset.y, .0f };
 
 			tile->setPosition(tilePosition);

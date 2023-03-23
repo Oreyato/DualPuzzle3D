@@ -1,7 +1,11 @@
 #include "Window.h"
 #include "Log.h"
 
-Window::Window() : SDLWindow(nullptr), width(WINDOW_WIDTH), height(WINDOW_HEIGHT)
+
+Window::Window() : 
+	SDLWindow{ nullptr },
+	width{ WINDOW_WIDTH }, 
+	height{ WINDOW_HEIGHT }
 {
 }
 
@@ -13,7 +17,7 @@ bool Window::initialize()
 		return false;
 	}
 
-	SDLWindow = SDL_CreateWindow("Cameras", 100, 100, width, height, SDL_WINDOW_OPENGL);
+	SDLWindow = SDL_CreateWindow("Dual Puzzle 3D!", 100, 100, width, height, SDL_WINDOW_OPENGL);
 	if (!SDLWindow)
 	{
 		Log::error(LogCategory::System, "Failed to create window");

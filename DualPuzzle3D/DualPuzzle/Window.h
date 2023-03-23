@@ -1,8 +1,11 @@
 #pragma once
 #include <SDL.h>
 
-const int WINDOW_WIDTH = 1024;
-const int WINDOW_HEIGHT = 768;
+#include "Consts.h"
+
+
+const int WINDOW_WIDTH = Consts::Screen::WIDTH;
+const int WINDOW_HEIGHT = Consts::Screen::HEIGHT;
 
 class Window
 {

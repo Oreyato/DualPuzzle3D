@@ -16,6 +16,7 @@
 
 // Game specific includes
 #include "Level.h"
+#include "Consts.h"
 
 
 bool Game::initialize()
@@ -74,11 +75,11 @@ void Game::load()
 	//v Place actors                                                 ║
 
 	Cube* testCube = new Cube();
-	testCube->setPosition(Vector3(50.0f, 0.0f, 0.0f));
+	testCube->setPosition(Vector3(0.0f, 0.0f, 0.0f));
 	testCube->setScale(100.0f);
-	Quaternion q(Vector3::unitY, -Maths::piOver2);
-	q = Quaternion::concatenate(q, Quaternion(Vector3::unitZ, Maths::pi + Maths::pi / 4.0f));
-	testCube->setRotation(q);
+	//Quaternion q(Vector3::unitY, -Maths::piOver2);
+	//q = Quaternion::concatenate(q, Quaternion(Vector3::unitZ, Maths::pi + Maths::pi / 4.0f));
+	//testCube->setRotation(q);
 
 	// Setup floor ==========================
 	//const float start = -1250.0f;
@@ -96,7 +97,7 @@ void Game::load()
 	//^ =============================================================╝
 
 	// Top view camera
-	renderer.setViewMatrix(Matrix4::createLookAt(Vector3{0.0f, 0.0f, 1500.0f}, Vector3::unitX, Vector3::unitZ));
+	renderer.setViewMatrix(Matrix4::createLookAt(Vector3{0.0f, 0.0f, Consts::Camera::HEIGHT }, Vector3::negUnitY, Vector3::unitZ));
 
 	// Setup lights
 	renderer.setAmbientLight(Vector3(0.2f, 0.2f, 0.2f));
@@ -120,9 +121,7 @@ void Game::load()
 	//	std::cout << component->getComponentName() << " Component\n";
 	//}
 
-	// MeshComponent* testMesh = new MeshComponent(testActor); // <--- LNK 2019 error
-
-	Level level{ 10, 10 };
+	Level level{5, 10 };
 	level.generateLevel();
 
 	//^ Tests                                                        ║

@@ -89,6 +89,7 @@
     <ClInclude Include="InputSystem.h" />
     <ClInclude Include="IRenderer.h" />
     <ClInclude Include="KeyboardState.h" />
+    <ClInclude Include="Layout.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="Maths.h" />

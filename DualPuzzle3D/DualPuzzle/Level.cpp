@@ -9,6 +9,8 @@ Level::Level(int columnsP, int rowsP) :
 {
 	tileWidth = Consts::Tile::WIDTH;
 	tileLength = Consts::Tile::LENGTH;
+
+	fillLayouts();
 }
 
 Level::~Level()
@@ -36,4 +38,16 @@ void Level::generateLevel()
 	}
 
 	std::cout << "Level size: " << level.size() << std::endl;
+}
+
+void Level::fillLayouts()
+{
+	levelLayouts.emplace_back(Layout{
+		0,
+		{
+			1
+		},
+		1,
+		1
+	});
 }

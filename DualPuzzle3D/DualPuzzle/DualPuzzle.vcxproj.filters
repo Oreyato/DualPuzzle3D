@@ -333,6 +333,9 @@
     <ClInclude Include="Consts.h">
       <Filter>Game\Utils</Filter>
     </ClInclude>
+    <ClInclude Include="Layout.h">
+      <Filter>Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Res\Meshes\BasicMeshes\Cube.gpmesh">

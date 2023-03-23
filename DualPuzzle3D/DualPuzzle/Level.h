@@ -3,6 +3,7 @@
 #include <vector>
 
 #include "Tile.h"
+#include "Layout.h"
 
 
 class Level
@@ -25,5 +26,8 @@ private:
 	float tileLength{ 1.0f };
 
 	std::vector<Tile*> level;
+
+	std::vector<Layout> levelLayouts;
+	void fillLayouts();
 };
 

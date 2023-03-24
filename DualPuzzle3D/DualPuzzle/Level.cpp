@@ -43,11 +43,11 @@ void Level::generateLevel()
 			tile->setPosition(pos);
 			tile->setType(TileType::A_START);
 
-			//if (desc != TileType::BACKGROUND && desc != TileType::LIMIT) {
-			//	Cube* testCube = new Cube();
-			//	testCube->setPosition(Vector3{ pos });
-			//	testCube->setScale(100.0f);
-			//}
+			if (desc != TileType::BACKGROUND && desc != TileType::LIMIT) {
+				Cube* testCube = new Cube();
+				testCube->setPosition(Vector3{ pos });
+				testCube->setScale(100.0f);
+			}
 
 			level.push_back(tile);
 

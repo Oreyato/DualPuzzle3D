@@ -1,7 +1,7 @@
 #include "Level.h"
 
 #include "Consts.h"
-#include "Cube.h"
+#include "GameCube.h"
 
 
 Level::Level(int levelIndexP) :
@@ -37,21 +37,34 @@ void Level::generateLevel()
 		for (int col = 0; col < columns; col++) {
 			int desc = currentLayout->description[index];
 
+			// -- Create Tile --
 			Tile* tile = new Tile(tileWidth, tileLength, desc);
 			Vector3 pos{ col * tileLength - offset.y, row * tileWidth - offset.x, .0f };
 
 			tile->setPosition(pos);
 			tile->setType(TileType::A_START);
 
-			if (desc != TileType::BACKGROUND && desc != TileType::LIMIT) {
-				Cube* testCube = new Cube();
-				testCube->setPosition(Vector3{ pos });
-				testCube->setScale(100.0f);
-			}
-
 			level.push_back(tile);
 
 			index++;
+
+			// -- Create GameCubes --
+			if (desc != TileType::LIMIT) {
+				// Create ground cubes
+				GameCube* ground = new GameCube{ tileWidth, tileLength, TileType::BACKGROUND };
+
+				ground->setPosition(Vector3{ pos });
+				ground->setScale(100.0f);
+
+				// Create special GameCubes
+				if (desc != TileType::BACKGROUND) {
+					GameCube* testCube = new GameCube{ tileWidth, tileLength, desc };
+					pos += Vector3{ 0.0f, 0.0f, 100.0f };
+
+					testCube->setPosition(Vector3{ pos });
+					testCube->setScale(100.0f);
+				}
+			}
 		}
 	}
 

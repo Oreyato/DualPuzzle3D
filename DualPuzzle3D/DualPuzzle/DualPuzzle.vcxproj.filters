@@ -187,6 +187,9 @@
     <ClCompile Include="Tile.cpp">
       <Filter>Game\Prefabs</Filter>
     </ClCompile>
+    <ClCompile Include="GameCube.cpp">
+      <Filter>Game\Prefabs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h">
@@ -336,6 +339,9 @@
     <ClInclude Include="Layout.h">
       <Filter>Game</Filter>
     </ClInclude>
+    <ClInclude Include="GameCube.h">
+      <Filter>Game\Prefabs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Res\Meshes\BasicMeshes\Cube.gpmesh">
@@ -372,6 +378,9 @@
       <Filter>Engine\Shaders</Filter>
     </None>
     <None Include="Res\Meshes\Tile.gpmesh">
+      <Filter>Game\Meshes</Filter>
+    </None>
+    <None Include="Res\Meshes\GameCube.gpmesh">
       <Filter>Game\Meshes</Filter>
     </None>
   </ItemGroup>

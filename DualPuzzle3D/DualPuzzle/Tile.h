@@ -29,7 +29,7 @@ public:
 	inline void setType(TileType typeP) { type = typeP; }
 	inline void setType(int typeP) { type = typeP; }
 
-private:
+protected:
 	float width{ 0.0f };
 	float height{ 0.0f };
 

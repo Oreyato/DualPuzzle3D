@@ -68,19 +68,21 @@ void Game::load()
 
 	// -- Game specific meshes --
 	Assets::loadMesh("Res\\Meshes\\Tile.gpmesh", "Mesh_Tile");
+	Assets::loadMesh("Res\\Meshes\\GameCube.gpmesh", "GameCube_Tile");
 
 	//^ Load Shaders/Textures/Meshes                                 ║
 	//^ =============================================================╝
 	//v =============================================================╗
 	//v Place actors                                                 ║
 
-
+	Level level{ 4 };
+	level.generateLevel();
 
 	//^ Place actors                                                 ║
 	//^ =============================================================╝
 
 	// Top view camera
-	renderer.setViewMatrix(Matrix4::createLookAt(Vector3{0.0f, 0.0f, Consts::Camera::HEIGHT }, Vector3::negUnitY, Vector3::unitZ));
+	renderer.setViewMatrix(Matrix4::createLookAt(Vector3{0.0f, 0.0f, Consts::Camera::HEIGHT }, Vector3::unitY, Vector3::unitZ));
 
 	// Setup lights
 	renderer.setAmbientLight(Vector3(0.2f, 0.2f, 0.2f));
@@ -96,16 +98,7 @@ void Game::load()
 	//v Tests                                                        ║
 
 	//FPSActor* testActor = new FPSActor();
-
-	//vector<Component*> components = testActor->getComponents();
-
-	//for (Component* component : components)
-	//{
-	//	std::cout << component->getComponentName() << " Component\n";
-	//}
-
-	Level level{ 4 };
-	level.generateLevel();
+	
 
 	//^ Tests                                                        ║
 	//^ =============================================================╝

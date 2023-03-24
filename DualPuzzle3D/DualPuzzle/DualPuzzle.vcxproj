@@ -36,6 +36,7 @@
     <ClCompile Include="FPSActor.cpp" />
     <ClCompile Include="FPSCameraComponent.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameCube.cpp" />
     <ClCompile Include="InputComponent.cpp" />
     <ClCompile Include="InputSystem.cpp" />
     <ClCompile Include="KeyboardState.cpp" />
@@ -85,6 +86,7 @@
     <ClInclude Include="FPSActor.h" />
     <ClInclude Include="FPSCameraComponent.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameCube.h" />
     <ClInclude Include="InputComponent.h" />
     <ClInclude Include="InputSystem.h" />
     <ClInclude Include="IRenderer.h" />
@@ -119,6 +121,7 @@
     <None Include="Res\Meshes\BasicMeshes\Cube.gpmesh" />
     <None Include="Res\Meshes\BasicMeshes\Plane.gpmesh" />
     <None Include="Res\Meshes\BasicMeshes\Sphere.gpmesh" />
+    <None Include="Res\Meshes\GameCube.gpmesh" />
     <None Include="Res\Meshes\RacingCar.gpmesh" />
     <None Include="Res\Meshes\Rifle.gpmesh" />
     <None Include="Res\Meshes\Tile.gpmesh" />

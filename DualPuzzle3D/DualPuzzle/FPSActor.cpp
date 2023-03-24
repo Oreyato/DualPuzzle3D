@@ -16,7 +16,7 @@ FPSActor::FPSActor() :
 	cameraComponent(nullptr),
 	lastFootstep(0.0f)
 {
-	setPosition(Vector3{ 0.0f, 0.0f, 150.0f });
+	setPosition(Vector3{ 0.0f, 0.0f, 250.0f });
 
 	moveComponent = new MoveComponent(this);
 	audioComponent = new AudioComponent(this);

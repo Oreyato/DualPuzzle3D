@@ -23,16 +23,17 @@ enum TileType {
 class Tile : public Actor
 {
 public:
-	Tile(float widthP, float heightP, TileType typeP = TileType::DEFAULT);
+	Tile(float widthP, float heightP, int typeP = TileType::DEFAULT);
 
-	inline const TileType getType() { return type; }
+	inline const int getType() { return type; }
 	inline void setType(TileType typeP) { type = typeP; }
+	inline void setType(int typeP) { type = typeP; }
 
 private:
 	float width{ 0.0f };
 	float height{ 0.0f };
 
-	TileType type{ BACKGROUND };
+	int type;
 
 	void setTexture();
 

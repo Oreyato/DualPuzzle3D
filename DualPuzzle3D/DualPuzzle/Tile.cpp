@@ -3,7 +3,7 @@
 #include "Assets.h"
 
 
-Tile::Tile(float widthP, float heightP, TileType typeP) :
+Tile::Tile(float widthP, float heightP, int typeP) :
 	width{ widthP },
 	height{ heightP },
 	type{ typeP }

@@ -9,7 +9,7 @@
 class Level
 {
 public:
-	Level(int widthP, int heightP);
+	Level(int levelIndexP = 0);
 	~Level();
 
 	Level(const Level&) = delete;
@@ -18,12 +18,14 @@ public:
 	void generateLevel();
 	inline std::vector<Tile*> getLevel() { return level; }
 
-private:
-	int columns{ 1 };
-	int rows{ 1 };
+	inline int getCurrentLevelIndex() { return currentLevelIndex; }
+	void setLevel(int levelIndex);
 
+private:
 	float tileWidth{ 1.0f };
 	float tileLength{ 1.0f };
+
+	int currentLevelIndex{ 0 };
 
 	std::vector<Tile*> level;
 

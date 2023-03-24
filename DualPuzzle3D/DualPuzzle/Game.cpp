@@ -74,24 +74,7 @@ void Game::load()
 	//v =============================================================╗
 	//v Place actors                                                 ║
 
-	Cube* testCube = new Cube();
-	testCube->setPosition(Vector3(0.0f, 0.0f, 0.0f));
-	testCube->setScale(100.0f);
-	//Quaternion q(Vector3::unitY, -Maths::piOver2);
-	//q = Quaternion::concatenate(q, Quaternion(Vector3::unitZ, Maths::pi + Maths::pi / 4.0f));
-	//testCube->setRotation(q);
 
-	// Setup floor ==========================
-	//const float start = -1250.0f;
-	//const float size = 250.0f;
-	//for (int i = 0; i < 10; i++)
-	//{
-	//	for (int j = 0; j < 10; j++)
-	//	{
-	//		Plane* p = new Plane();
-	//		p->setPosition(Vector3(start + i * size, start + j * size, 0.0f));
-	//	}
-	//}
 
 	//^ Place actors                                                 ║
 	//^ =============================================================╝
@@ -121,7 +104,7 @@ void Game::load()
 	//	std::cout << component->getComponentName() << " Component\n";
 	//}
 
-	Level level{5, 10 };
+	Level level{ 4 };
 	level.generateLevel();
 
 	//^ Tests                                                        ║

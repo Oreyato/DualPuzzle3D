@@ -63,6 +63,11 @@ void Level::generateLevel()
 
 					testCube->setPosition(Vector3{ pos });
 					testCube->setScale(100.0f);
+
+					// TOFIX - The cube is facing down
+					Quaternion q(Vector3::unitZ, -Maths::piOver2);
+					q = Quaternion::concatenate(q, Quaternion{ Vector3::unitZ, Maths::pi });
+					testCube->setRotation(q);
 				}
 			}
 		}

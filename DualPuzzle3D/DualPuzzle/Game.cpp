@@ -97,7 +97,7 @@ void Game::load()
 	//v =============================================================╗
 	//v Tests                                                        ║
 
-	//FPSActor* testActor = new FPSActor();
+	FPSActor* testActor = new FPSActor();
 	
 
 	//^ Tests                                                        ║

@@ -20,13 +20,13 @@ Level::~Level()
 
 void Level::generateLevel()
 {
-	Layout* currentLayout = &levelLayouts[currentLevelIndex];
+	Layout currentLayout = levelLayouts[currentLevelIndex];
 
-	int rows = currentLayout->rowNb;
-	int columns = currentLayout->colNb;
+	int rows = currentLayout.rowNb;
+	int columns = currentLayout.colNb;
 
-	float xOffset = tileWidth * rows / 2.0f;
-	float yOffset = tileLength * columns / 2.0f;
+	float xOffset = tileWidth * columns / 2.0f;
+	float yOffset = tileLength * rows / 2.0f;
 
 	Vector2 offset{ xOffset, yOffset };
 
@@ -38,11 +38,11 @@ void Level::generateLevel()
 	for (int row = 0; row < rows; row++)
 	{
 		for (int col = 0; col < columns; col++) {
-			int desc = currentLayout->description[index];
+			int desc = currentLayout.description[index];
 
 			// -- Create Tile --
 			Tile* tile = new Tile(tileWidth, tileLength, desc);
-			Vector3 pos{ col * tileLength - offset.y, row * tileWidth - offset.x, .0f };
+			Vector3 pos{ col * tileLength - offset.x, row * tileWidth - offset.y, .0f };
 
 			tile->setPosition(pos);
 			tile->setType(TileType::A_START);
@@ -70,6 +70,7 @@ void Level::generateLevel()
 						movableCube->setPosition(Vector3{ pos });
 						movableCube->setScale(100.0f);
 						movableCube->setRotation(gameCubeRot);
+						movableCube->getTileGridInputComponent()->setLevelLayout(currentLayout);
 					}
 					// OBSTACLES
 					else if (desc == TileType::OBSTACLE) {

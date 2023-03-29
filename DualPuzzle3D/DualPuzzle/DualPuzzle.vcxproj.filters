@@ -199,6 +199,9 @@
     <ClCompile Include="TileGridInputComponent.cpp">
       <Filter>Game\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Layout.cpp">
+      <Filter>Game\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h">
@@ -345,9 +348,6 @@
     <ClInclude Include="Consts.h">
       <Filter>Game\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="Layout.h">
-      <Filter>Game</Filter>
-    </ClInclude>
     <ClInclude Include="GameCube.h">
       <Filter>Game\Prefabs</Filter>
     </ClInclude>
@@ -356,6 +356,9 @@
     </ClInclude>
     <ClInclude Include="TileGridInputComponent.h">
       <Filter>Game\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Layout.h">
+      <Filter>Game\Utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -75,7 +75,7 @@ void Game::load()
 	//v =============================================================╗
 	//v Place actors                                                 ║
 
-	Level level{ 2 };
+	Level level{ 3 };
 	level.generateLevel();
 
 	//^ Place actors                                                 ║

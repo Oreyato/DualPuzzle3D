@@ -55,6 +55,9 @@
     <Filter Include="Game\Meshes">
       <UniqueIdentifier>{1c49e4ff-7ea4-4ca5-bb8c-b4eef483150b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Components">
+      <UniqueIdentifier>{14eb01be-51ae-4600-b62c-fccd9f7fe202}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -192,6 +195,9 @@
     </ClCompile>
     <ClCompile Include="MovableGameCube.cpp">
       <Filter>Game\Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="TileGridInputComponent.cpp">
+      <Filter>Game\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -347,6 +353,9 @@
     </ClInclude>
     <ClInclude Include="MovableGameCube.h">
       <Filter>Game\Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="TileGridInputComponent.h">
+      <Filter>Game\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

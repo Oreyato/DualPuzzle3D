@@ -60,6 +60,7 @@
     <ClCompile Include="SpriteComponent.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="TileGridInputComponent.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Vector2.cpp" />
     <ClCompile Include="Vector3.cpp" />
@@ -113,6 +114,7 @@
     <ClInclude Include="SpriteComponent.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Tile.h" />
+    <ClInclude Include="TileGridInputComponent.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Vector3.h" />

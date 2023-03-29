@@ -1,7 +1,7 @@
 #include "Level.h"
 
 #include "Consts.h"
-#include "GameCube.h"
+#include "MovableGameCube.h"
 
 
 Level::Level(int levelIndexP) :
@@ -32,6 +32,9 @@ void Level::generateLevel()
 
 	int index{ 0 };
 
+	Quaternion gameCubeRot{ Vector3::unitY, Maths::pi };
+	gameCubeRot = Quaternion::concatenate(gameCubeRot, Quaternion{ Vector3::unitZ, Maths::pi });
+
 	for (int row = 0; row < rows; row++)
 	{
 		for (int col = 0; col < columns; col++) {
@@ -51,23 +54,31 @@ void Level::generateLevel()
 			// -- Create GameCubes --
 			if (desc != TileType::LIMIT) {
 				// Create ground cubes
-				GameCube* ground = new GameCube{ tileWidth, tileLength, TileType::BACKGROUND };
+				GameCube* ground = new GameCube{ tileWidth, tileLength, desc };
 
 				ground->setPosition(Vector3{ pos });
 				ground->setScale(100.0f);
+				ground->setRotation(gameCubeRot);
 
 				// Create special GameCubes
 				if (desc != TileType::BACKGROUND) {
-					GameCube* testCube = new GameCube{ tileWidth, tileLength, desc };
-					pos += Vector3{ 0.0f, 0.0f, 100.0f };
+					// PLAYER CUBES
+					if (desc == TileType::A_START || desc == TileType::B_START) {
+						MovableGameCube* movableCube = new MovableGameCube{ tileWidth, tileLength, desc };
+						pos += Vector3{ 0.0f, 0.0f, 100.0f };
 
-					testCube->setPosition(Vector3{ pos });
-					testCube->setScale(100.0f);
+						movableCube->setPosition(Vector3{ pos });
+						movableCube->setScale(100.0f);
+						movableCube->setRotation(gameCubeRot);
+					}
+					// OBSTACLES
+					else if (desc == TileType::OBSTACLE) {
+						GameCube* obstacleCube = new GameCube{ tileWidth, tileLength, desc };
+						pos += Vector3{ 0.0f, 0.0f, 100.0f };
 
-					// TOFIX - The cube is facing down
-					Quaternion q(Vector3::unitZ, -Maths::piOver2);
-					q = Quaternion::concatenate(q, Quaternion{ Vector3::unitZ, Maths::pi });
-					testCube->setRotation(q);
+						obstacleCube->setPosition(Vector3{ pos });
+						obstacleCube->setScale(100.0f);
+					}
 				}
 			}
 		}

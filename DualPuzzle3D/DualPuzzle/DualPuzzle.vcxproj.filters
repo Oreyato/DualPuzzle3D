@@ -190,6 +190,9 @@
     <ClCompile Include="GameCube.cpp">
       <Filter>Game\Prefabs</Filter>
     </ClCompile>
+    <ClCompile Include="MovableGameCube.cpp">
+      <Filter>Game\Prefabs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h">
@@ -340,6 +343,9 @@
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="GameCube.h">
+      <Filter>Game\Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="MovableGameCube.h">
       <Filter>Game\Prefabs</Filter>
     </ClInclude>
   </ItemGroup>

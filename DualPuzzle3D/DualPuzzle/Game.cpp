@@ -75,14 +75,14 @@ void Game::load()
 	//v =============================================================╗
 	//v Place actors                                                 ║
 
-	Level level{ 4 };
+	Level level{ 2 };
 	level.generateLevel();
 
 	//^ Place actors                                                 ║
 	//^ =============================================================╝
 
 	// Top view camera
-	renderer.setViewMatrix(Matrix4::createLookAt(Vector3{0.0f, 0.0f, Consts::Camera::HEIGHT }, Vector3::unitY, Vector3::unitZ));
+	renderer.setViewMatrix(Matrix4::createLookAt(Vector3{0.0f, 0.0f, Consts::Camera::HEIGHT }, Vector3::negUnitY, Vector3::unitZ));
 
 	// Setup lights
 	renderer.setAmbientLight(Vector3(0.2f, 0.2f, 0.2f));
@@ -92,12 +92,12 @@ void Game::load()
 	dir.specColor = Vector3(0.8f, 0.8f, 0.8f);
 
 	// Start music
-	musicEvent = audioSystem.playEvent("event:/Music");
+	//musicEvent = audioSystem.playEvent("event:/Music");
 
 	//v =============================================================╗
 	//v Tests                                                        ║
 
-	FPSActor* testActor = new FPSActor();
+	// FPSActor* testActor = new FPSActor();
 	
 
 	//^ Tests                                                        ║

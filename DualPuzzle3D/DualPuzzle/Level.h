@@ -35,6 +35,7 @@ private:
 	float tileLength{ 1.0f };
 
 	int currentLevelIndex{ 0 };
+	int maxLevelIndex{ 0 };
 
 	std::vector<Tile*> level;
 	std::vector<Actor*> actors;

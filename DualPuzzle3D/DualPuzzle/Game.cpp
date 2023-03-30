@@ -79,7 +79,7 @@ void Game::load()
 	//^ =============================================================╝
 
 	// Create level
-	level = new Level { 5 };
+	level = new Level { 1 };
 
 	// Top view camera
 	renderer.setViewMatrix(Matrix4::createLookAt(Vector3{0.0f, 0.0f, Consts::Camera::HEIGHT }, Vector3::negUnitY, Vector3::unitZ));

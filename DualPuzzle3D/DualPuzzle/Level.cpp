@@ -124,12 +124,16 @@ void Level::update(float dt)
 		{
 			winPosition += 1;
 		}
-
+		// Both cubes are at their target position
 		if (winPosition == 2) {
 			clean();
 
-			generateLevel();
-			return;
+			int nextLevel = currentLevelIndex + 1;
+			if (nextLevel >= maxLevelIndex) {
+				nextLevel = maxLevelIndex;
+			}
+
+			setLevel(nextLevel);
 		}
 	}
 }
@@ -249,4 +253,6 @@ void Level::fillLayouts()
 		9,
 		14
 	});
+
+	maxLevelIndex = levelLayouts.size() - 1;
 }

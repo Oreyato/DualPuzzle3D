@@ -4,16 +4,17 @@
 #include "TileGridInputComponent.h"
 
 
-enum Type
-{
-    A,
-    B
-};
 
 class MovableGameCube :
     public GameCube
 {
 public:
+    enum Type
+    {
+        A,
+        B
+    };
+
     MovableGameCube() = delete;
     MovableGameCube(float widthP, float heightP, int typeP);
 

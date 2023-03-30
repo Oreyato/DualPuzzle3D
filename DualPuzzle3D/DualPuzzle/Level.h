@@ -41,6 +41,7 @@ private:
 	std::vector<MovableGameCube*> playerCharacters;
 
 	std::vector<Layout> levelLayouts;
+	Layout currentLayout;
 	void fillLayouts();
 };
 

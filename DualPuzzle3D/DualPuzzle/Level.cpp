@@ -12,6 +12,7 @@ Level::Level(int levelIndexP) :
 	tileLength = Consts::Tile::LENGTH;
 
 	fillLayouts();
+	currentLayout = levelLayouts[currentLevelIndex];
 	generateLevel();
 }
 
@@ -21,8 +22,6 @@ Level::~Level()
 
 void Level::generateLevel()
 {
-	Layout currentLayout = levelLayouts[currentLevelIndex];
-
 	int rows = currentLayout.rowNb;
 	int columns = currentLayout.colNb;
 
@@ -75,6 +74,13 @@ void Level::generateLevel()
 						movableCube->setRotation(gameCubeRot);
 						movableCube->getTileGridInputComponent()->setLevelLayout(currentLayout);
 
+						if (desc == TileType::A_START) {
+							movableCube->setType(MovableGameCube::Type::A);
+						}
+						else {
+							movableCube->setType(MovableGameCube::Type::B);
+						}
+
 						playerCharacters.push_back(movableCube);
 						actors.push_back(movableCube);
 					}
@@ -98,14 +104,32 @@ void Level::generateLevel()
 
 void Level::update(float dt)
 {
-	if (playerCharacters.size() != 0)
-	{
-		for (MovableGameCube* character : playerCharacters) {
-			if (character->getState() == Actor::ActorState::Out) {
-				clean();
+	Layout currentLayout = levelLayouts[currentLevelIndex];
+	int winPosition = 0;
 
-				generateLevel();
-			}
+	for (MovableGameCube* character : playerCharacters) {
+		// Lose condition =======================
+		if (character->getState() == Actor::ActorState::Out) {
+			clean();
+
+			generateLevel();
+			return;
+		}
+		// Win condition ========================
+		int targetIndex = currentLayout.worldCoordinatesToIndex(character->getPosition());
+		int tileType = currentLayout.description[targetIndex];
+
+		if ((character->getType() == MovableGameCube::Type::A && tileType == TileType::A_END)
+			|| (character->getType() == MovableGameCube::Type::B && tileType == TileType::B_END)) 
+		{
+			winPosition += 1;
+		}
+
+		if (winPosition == 2) {
+			clean();
+
+			generateLevel();
+			return;
 		}
 	}
 }
@@ -113,6 +137,7 @@ void Level::update(float dt)
 void Level::setLevel(int levelIndex)
 {
 	currentLevelIndex = levelIndex;
+	currentLayout = levelLayouts[currentLevelIndex];
 
 	generateLevel();
 }

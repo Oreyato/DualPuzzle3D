@@ -15,7 +15,11 @@
 using std::vector;
 
 enum class GameState {
-	MainMenu, Gameplay, Pause, Quit
+	MainMenu, 
+	Gameplay, 
+	Pause, 
+	WinGame,
+	Quit
 };
 
 class Game
@@ -75,6 +79,7 @@ private:
 	SoundEvent musicEvent;
 	Level* level;
 
+	void loadStates();
 	//^ Game specifics ===============================================
 };
 

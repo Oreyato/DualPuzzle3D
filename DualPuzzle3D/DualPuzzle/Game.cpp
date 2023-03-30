@@ -48,6 +48,8 @@ void Game::load()
 	Assets::loadTexture(renderer, "Res\\Textures\\Sphere.png", "Sphere");
 
 	// -- Game specific textures --
+	Assets::loadTexture(renderer, "Res\\Textures\\DualPuzzleStarting.png", "GameImage");
+
 	Assets::loadTexture(renderer, "Res\\Textures\\Background.png", "Background");
 
 	Assets::loadTexture(renderer, "Res\\Textures\\A_Start.png", "A_Start");
@@ -71,38 +73,8 @@ void Game::load()
 
 	//^ Load Shaders/Textures/Meshes                                 ║
 	//^ =============================================================╝
-	//v =============================================================╗
-	//v Place actors                                                 ║
 
-
-	//^ Place actors                                                 ║
-	//^ =============================================================╝
-
-	// Create level
-	level = new Level { 1 };
-
-	// Top view camera
-	renderer.setViewMatrix(Matrix4::createLookAt(Vector3{0.0f, 0.0f, Consts::Camera::HEIGHT }, Vector3::negUnitY, Vector3::unitZ));
-
-	// Setup lights
-	renderer.setAmbientLight(Vector3(0.2f, 0.2f, 0.2f));
-	DirectionalLight& dir = renderer.getDirectionalLight();
-	dir.direction = Vector3(0.0f, -0.707f, -0.707f);
-	dir.diffuseColor = Vector3(0.78f, 0.88f, 1.0f);
-	dir.specColor = Vector3(0.8f, 0.8f, 0.8f);
-
-	// Start music
-	//musicEvent = audioSystem.playEvent("event:/Music");
-
-	//v =============================================================╗
-	//v Tests                                                        ║
-
-	// Enable FPS view
-	// FPSActor* testActor = new FPSActor();
-	
-
-	//^ Tests                                                        ║
-	//^ =============================================================╝
+	loadStates();
 }
 
 void Game::processInput()
@@ -120,12 +92,27 @@ void Game::processInput()
 	const InputState& input = inputSystem.getInputState();
 
 	//v Game states ==================================================
-	if (state == GameState::Gameplay)
-	{
+	if (state == GameState::MainMenu) {
 		// Escape: quit game
 		if (input.keyboard.getKeyState(SDL_SCANCODE_ESCAPE) == ButtonState::Released)
 		{
 			isRunning = false;
+		}
+
+		// Enter: launch first level
+		if (input.keyboard.getKeyState(SDL_SCANCODE_RETURN) == ButtonState::Released) {
+			setState(GameState::Gameplay);
+		}
+
+		return;
+	}
+
+	if (state == GameState::Gameplay)
+	{
+		// Escape: go to main menu
+		if (input.keyboard.getKeyState(SDL_SCANCODE_ESCAPE) == ButtonState::Released)
+		{
+			setState(GameState::MainMenu);
 		}
 
 		// Actor input
@@ -135,6 +122,15 @@ void Game::processInput()
 			actor->processInput(input);
 		}
 		isUpdatingActors = false;
+	
+		return;
+	}
+
+	if (state == GameState::WinGame) {
+		// Enter: launch first level
+		if (input.keyboard.getKeyState(SDL_SCANCODE_RETURN) == ButtonState::Released) {
+			setState(GameState::MainMenu);
+		}
 	}
 
 	//^ Game states ==================================================
@@ -145,41 +141,71 @@ void Game::update(float dt)
 	// Update audio
 	audioSystem.update(dt);
 
-	if (state == GameState::Gameplay)
+	//v =============================================================╗
+	//v Common actor management                                      ║
+
+	// Update actors 
+	isUpdatingActors = true;
+	for (auto actor : actors)
 	{
-		// Update actors 
-		isUpdatingActors = true;
-		for (auto actor : actors)
-		{
-			actor->update(dt);
-		}
-		isUpdatingActors = false;
+		actor->update(dt);
+	}
+	isUpdatingActors = false;
 
-		// Move pending actors to actors
-		for (auto pendingActor : pendingActors)
-		{
-			pendingActor->computeWorldTransform();
-			actors.emplace_back(pendingActor);
-		}
-		pendingActors.clear();
+	// Move pending actors to actors
+	for (auto pendingActor : pendingActors)
+	{
+		pendingActor->computeWorldTransform();
+		actors.emplace_back(pendingActor);
+	}
+	pendingActors.clear();
 
-		// Delete dead actors
-		vector<Actor*> deadActors;
-		for (auto actor : actors)
+	// Delete dead actors
+	vector<Actor*> deadActors;
+	for (auto actor : actors)
+	{
+		if (actor->getState() == Actor::ActorState::Dead)
 		{
-			if (actor->getState() == Actor::ActorState::Dead)
-			{
-				deadActors.emplace_back(actor);
-			}
+			deadActors.emplace_back(actor);
 		}
-		for (auto deadActor : deadActors)
-		{
-			delete deadActor;
-		}
+	}
+	for (auto deadActor : deadActors)
+	{
+		delete deadActor;
+	}
 
+	//^ Common actor management                                      ║
+	//^ =============================================================╝
+	//v =============================================================╗
+	//v Main menu                                                    ║
+
+	if (state == GameState::MainMenu) {
+
+	}
+
+	//^ Main menu                                                    ║
+	//^ =============================================================╝
+	//v =============================================================╗
+	//v Gameplay                                                     ║
+
+	else if (state == GameState::Gameplay)
+	{
 		// Update level
 		level->update(dt);
 	}
+
+	//^ Gameplay                                                     ║
+	//^ =============================================================╝
+	//v =============================================================╗
+	//v Win                                                          ║
+
+	else if (state == GameState::WinGame) {
+
+	}
+
+	//^ Win                                                          ║
+	//^ =============================================================╝
+
 }
 
 void Game::render()
@@ -187,6 +213,68 @@ void Game::render()
 	renderer.beginDraw();
 	renderer.draw();
 	renderer.endDraw();
+}
+
+void Game::loadStates()
+{
+	while (!actors.empty())
+	{
+		delete actors.back();
+	}
+
+	if (state == GameState::MainMenu) {
+		Actor* test = new Actor{};
+		test->setScale(1.0f);
+		SpriteComponent* spriteComponent = new SpriteComponent{ test, Assets::getTexture("GameImage") };
+
+
+		// Top view camera
+		renderer.setViewMatrix(Matrix4::createLookAt(Vector3{ 0.0f, 0.0f, Consts::Camera::HEIGHT }, Vector3::negUnitY, Vector3::unitZ));
+	
+		return;
+	}
+	if (state == GameState::Gameplay)
+	{
+		// Create level
+		level = new Level{ 5 };
+
+		// Top view camera
+		renderer.setViewMatrix(Matrix4::createLookAt(Vector3{ 0.0f, 0.0f, Consts::Camera::HEIGHT }, Vector3::negUnitY, Vector3::unitZ));
+
+		// Setup lights
+		renderer.setAmbientLight(Vector3(0.2f, 0.2f, 0.2f));
+		DirectionalLight& dir = renderer.getDirectionalLight();
+		dir.direction = Vector3(0.0f, -0.707f, -0.707f);
+		dir.diffuseColor = Vector3(0.78f, 0.88f, 1.0f);
+		dir.specColor = Vector3(0.8f, 0.8f, 0.8f);
+
+		// Start music
+		//musicEvent = audioSystem.playEvent("event:/Music");
+
+		//v =============================================================╗
+		//v Tests                                                        ║
+
+		// Enable FPS view
+		// FPSActor* testActor = new FPSActor();
+
+
+		//^ Tests                                                        ║
+		//^ =============================================================╝ 
+		
+		return;
+	}
+
+	if (state == GameState::WinGame) {
+		Actor* test = new Actor{};
+		test->setScale(1.0f);
+		SpriteComponent* spriteComponent = new SpriteComponent{ test, Assets::getTexture("Default") };
+
+
+		// Top view camera
+		renderer.setViewMatrix(Matrix4::createLookAt(Vector3{ 0.0f, 0.0f, Consts::Camera::HEIGHT }, Vector3::negUnitY, Vector3::unitZ));
+	
+		return;
+	}
 }
 
 void Game::loop()
@@ -228,6 +316,7 @@ void Game::close()
 void Game::setState(GameState stateP)
 {
 	state = stateP;
+	loadStates();
 }
 
 void Game::addActor(Actor* actor)

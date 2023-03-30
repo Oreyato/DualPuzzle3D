@@ -1,11 +1,12 @@
 #include "Level.h"
 
 #include "Consts.h"
-#include "MovableGameCube.h"
+#include "Game.h"
 
 
 Level::Level(int levelIndexP) :
-	currentLevelIndex{ levelIndexP }
+	currentLevelIndex{ levelIndexP },
+	game{ Game::instance() }
 {
 	tileWidth = Consts::Tile::WIDTH;
 	tileLength = Consts::Tile::LENGTH;
@@ -60,6 +61,8 @@ void Level::generateLevel()
 				ground->setScale(100.0f);
 				ground->setRotation(gameCubeRot);
 
+				actors.push_back(ground);
+
 				// Create special GameCubes
 				if (desc != TileType::BACKGROUND) {
 					// PLAYER CUBES
@@ -71,6 +74,9 @@ void Level::generateLevel()
 						movableCube->setScale(100.0f);
 						movableCube->setRotation(gameCubeRot);
 						movableCube->getTileGridInputComponent()->setLevelLayout(currentLayout);
+
+						playerCharacters.push_back(movableCube);
+						actors.push_back(movableCube);
 					}
 					// OBSTACLES
 					else if (desc == TileType::OBSTACLE) {
@@ -79,6 +85,8 @@ void Level::generateLevel()
 
 						obstacleCube->setPosition(Vector3{ pos });
 						obstacleCube->setScale(100.0f);
+
+						actors.push_back(obstacleCube);
 					}
 				}
 			}
@@ -88,11 +96,34 @@ void Level::generateLevel()
 	std::cout << "Level size: " << level.size() << std::endl;
 }
 
+void Level::update(float dt)
+{
+	if (playerCharacters.size() != 0)
+	{
+		for (MovableGameCube* character : playerCharacters) {
+			if (character->getState() == Actor::ActorState::Out) {
+				clean();
+
+				generateLevel();
+			}
+		}
+	}
+}
+
 void Level::setLevel(int levelIndex)
 {
 	currentLevelIndex = levelIndex;
 
 	generateLevel();
+}
+
+void Level::clean()
+{
+	for (Actor* actor : actors) {
+		actor->setState(Actor::ActorState::Dead);
+	}
+	actors.clear();
+	playerCharacters.clear();
 }
 
 void Level::fillLayouts()

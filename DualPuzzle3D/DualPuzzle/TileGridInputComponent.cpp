@@ -61,6 +61,10 @@ bool TileGridInputComponent::canMoveTo(Vector3 targetPositionP)
 
 	if (tileType == TileType::OBSTACLE) return false;
 
+	if (tileType == TileType::LIMIT) {
+		owner.setState(Actor::ActorState::Out);
+	}
+
 	return true;
 }
 

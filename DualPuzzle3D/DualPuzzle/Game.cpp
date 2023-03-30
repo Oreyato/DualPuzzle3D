@@ -15,7 +15,6 @@
 #include "Timer.h"
 
 // Game specific includes
-#include "Level.h"
 #include "Consts.h"
 
 
@@ -75,10 +74,12 @@ void Game::load()
 	//v =============================================================╗
 	//v Place actors                                                 ║
 
-	Level level{ 5 };
 
 	//^ Place actors                                                 ║
 	//^ =============================================================╝
+
+	// Create level
+	level = new Level { 5 };
 
 	// Top view camera
 	renderer.setViewMatrix(Matrix4::createLookAt(Vector3{0.0f, 0.0f, Consts::Camera::HEIGHT }, Vector3::negUnitY, Vector3::unitZ));
@@ -96,6 +97,7 @@ void Game::load()
 	//v =============================================================╗
 	//v Tests                                                        ║
 
+	// Enable FPS view
 	// FPSActor* testActor = new FPSActor();
 	
 
@@ -174,6 +176,9 @@ void Game::update(float dt)
 		{
 			delete deadActor;
 		}
+
+		// Update level
+		level->update(dt);
 	}
 }
 

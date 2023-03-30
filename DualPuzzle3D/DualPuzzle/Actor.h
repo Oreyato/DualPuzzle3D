@@ -14,7 +14,11 @@ public:
 
 	enum class ActorState
 	{
-		Active, Paused, Dead
+		Active,
+		Paused,
+		Accomplished,
+		Out,
+		Dead
 	};
 
 	Actor();

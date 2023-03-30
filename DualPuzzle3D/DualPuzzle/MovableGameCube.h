@@ -4,6 +4,12 @@
 #include "TileGridInputComponent.h"
 
 
+enum Type
+{
+    A,
+    B
+};
+
 class MovableGameCube :
     public GameCube
 {
@@ -13,6 +19,11 @@ public:
 
     TileGridInputComponent* getTileGridInputComponent();
 
-private:
+    inline Type getType() { return type; }
+    inline void setType(Type typeP) { type = typeP; }
+
+protected:
     TileGridInputComponent* tileGridInputComponent;
+
+    Type type;
 };

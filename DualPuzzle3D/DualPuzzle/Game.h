@@ -8,6 +8,9 @@
 #include "AudioSystem.h"
 #include "InputSystem.h"
 
+// Game specific includes
+#include "Level.h"
+
 
 using std::vector;
 
@@ -70,7 +73,7 @@ private:
 
 	//v Game specifics ===============================================
 	SoundEvent musicEvent;
-
+	Level* level;
 
 	//^ Game specifics ===============================================
 };

@@ -1,7 +1,6 @@
 #pragma once
 #include "Actor.h"
 
-#include "SpriteComponent.h"
 #include "MeshComponent.h"
 
 

@@ -11,3 +11,10 @@ TileGridInputComponent* MovableGameCube::getTileGridInputComponent()
 {
 	return tileGridInputComponent;
 }
+
+void MovableGameCube::setPosition(Vector3 positionP)
+{
+	previousPosition = position;
+	position = positionP;
+	mustRecomputeWorldTransform = true;
+}

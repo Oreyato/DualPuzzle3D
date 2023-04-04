@@ -58,7 +58,7 @@ public:
 	void addComponent(Component* component);
 	void removeComponent(Component* component);
 
-private:
+protected:
 	Game& game;
 	ActorState state;
 	Vector3 position;

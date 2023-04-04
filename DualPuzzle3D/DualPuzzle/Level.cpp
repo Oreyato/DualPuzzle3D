@@ -145,7 +145,7 @@ void Level::update(float dt)
 			clean();
 
 			int nextLevel = currentLevelIndex + 1;
-			if (nextLevel >= maxLevelIndex) {
+			if (nextLevel > maxLevelIndex) {
 				// Completed the game
 				game.setState(GameState::WinGame);
 				return;

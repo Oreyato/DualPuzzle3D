@@ -107,7 +107,23 @@ void Level::update(float dt)
 	Layout currentLayout = levelLayouts[currentLevelIndex];
 	int winPosition = 0;
 
+	vector<Vector3> playersPos;
+
 	for (MovableGameCube* character : playerCharacters) {
+		//v Simple "collision" test ======================================
+		Vector3 playerPos = character->getPosition();
+
+		for (Vector3 pos : playersPos) {
+			if (playerPos == pos) {
+				playerPos = character->getPreviousPosition();
+				character->setPosition(playerPos);
+			}
+		}
+
+		playersPos.push_back(playerPos);
+
+		//^ Simple "collision" test ======================================
+		//v Lose / win conditions ========================================
 		// Lose condition =======================
 		if (character->getState() == Actor::ActorState::Out) {
 			clean();
@@ -137,6 +153,7 @@ void Level::update(float dt)
 
 			setLevel(nextLevel);
 		}
+		//^ Lose / win conditions ========================================
 	}
 }
 

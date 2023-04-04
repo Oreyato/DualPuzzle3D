@@ -80,6 +80,17 @@ public:
 		return *this;
 	}
 
+	// Vector ==
+	bool operator==(const Vector3& right) {
+		if (x == right.x &&
+			y == right.y &&
+			z == right.z) {
+			
+			return true;
+		}
+		return false;
+	}
+
 	// Normalize the provided vector
 	static Vector3 normalize(const Vector3& vec)
 	{

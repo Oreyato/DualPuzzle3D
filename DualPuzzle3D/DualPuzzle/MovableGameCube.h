@@ -23,8 +23,11 @@ public:
     inline Type getType() { return type; }
     inline void setType(Type typeP) { type = typeP; }
 
+    inline Vector3 getPreviousPosition() { return previousPosition; }
+
 protected:
     TileGridInputComponent* tileGridInputComponent;
 
+    Vector3 previousPosition{ 0.0f, 0.0f, 0.0f };
     Type type;
 };

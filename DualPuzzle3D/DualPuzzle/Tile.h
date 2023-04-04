@@ -2,6 +2,7 @@
 #include "Actor.h"
 
 #include "MeshComponent.h"
+#include "AnimMeshComponent.h"
 
 
 enum TileType {
@@ -37,5 +38,6 @@ protected:
 	void setTexture();
 
 	class MeshComponent* meshComponent;
+	class AnimMeshComponent* animMeshComponent;
 };
 

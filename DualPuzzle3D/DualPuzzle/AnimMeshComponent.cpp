@@ -29,6 +29,7 @@ void AnimMeshComponent::setAnimTextures(const std::vector<Texture*>& texturesP)
 
 void AnimMeshComponent::setAnimFPS(float animFPSP)
 {
+	animFPS = animFPSP;
 }
 
 void AnimMeshComponent::update(float dt)

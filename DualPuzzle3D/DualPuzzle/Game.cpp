@@ -53,6 +53,9 @@ void Game::load()
 	Assets::loadTexture(renderer, "Res\\Textures\\Background.png", "Background");
 
 	Assets::loadTexture(renderer, "Res\\Textures\\A_Start.png", "A_Start");
+	Assets::loadTexture(renderer, "Res\\Textures\\A_Start_0.png", "A_Start_0");
+	Assets::loadTexture(renderer, "Res\\Textures\\A_Start_1.png", "A_Start_1");
+	Assets::loadTexture(renderer, "Res\\Textures\\A_Start_2.png", "A_Start_2");
 	Assets::loadTexture(renderer, "Res\\Textures\\A_End.png", "A_End");
 
 	Assets::loadTexture(renderer, "Res\\Textures\\B_Start.png", "B_Start");
@@ -60,6 +63,9 @@ void Game::load()
 
 	Assets::loadTexture(renderer, "Res\\Textures\\Obstacle.png", "Obstacle");
 	Assets::loadTexture(renderer, "Res\\Textures\\Limit.png", "Limit");
+	Assets::loadTexture(renderer, "Res\\Textures\\Limit_0.png", "Limit_0");
+	Assets::loadTexture(renderer, "Res\\Textures\\Limit_1.png", "Limit_1");
+	Assets::loadTexture(renderer, "Res\\Textures\\Limit_2.png", "Limit_2");
 
 	// MESHES ===============================
 	// -- Basic meshes --

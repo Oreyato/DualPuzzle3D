@@ -22,6 +22,7 @@ public:
     void setAnimFPS(float animFPSP);
 
     void update(float dt) override;
+    void draw(Shader& shader) override;
 
 private:
     std::vector<Texture*> animTextures;

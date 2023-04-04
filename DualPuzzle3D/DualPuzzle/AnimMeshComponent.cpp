@@ -22,8 +22,6 @@ void AnimMeshComponent::setAnimTextures(const std::vector<Texture*>& texturesP)
 
 	if (animTextures.size() > 0) {
 		currentFrame = 0.0f;
-		
-		mesh->setTexture(animTextures[0]);
 	}
 }
 
@@ -43,6 +41,37 @@ void AnimMeshComponent::update(float dt)
 		{
 			currentFrame -= animTextures.size();
 		}
-		mesh->setTexture(animTextures[static_cast<int>(currentFrame)]);
+	}
+}
+
+void AnimMeshComponent::draw(Shader& shader)
+{
+	if (mesh) {
+		if (animTextures.size() > 0) {
+			Matrix4 wt = owner.getWorldTransform();
+			shader.setMatrix4("uWorldTransform", wt);
+			shader.setFloat("uSpecPower", mesh->getSpecularPower());
+			Texture* t = animTextures[static_cast<int>(currentFrame)];
+			if (t)
+			{
+				t->setActive();
+			}
+			VertexArray* va = mesh->getVertexArray();
+			va->setActive();
+			glDrawElements(GL_TRIANGLES, va->getNbIndices(), GL_UNSIGNED_INT, nullptr);
+		}
+		else {
+			Matrix4 wt = owner.getWorldTransform();
+			shader.setMatrix4("uWorldTransform", wt);
+			shader.setFloat("uSpecPower", mesh->getSpecularPower());
+			Texture* t = mesh->getTexture(textureIndex);
+			if (t)
+			{
+				t->setActive();
+			}
+			VertexArray* va = mesh->getVertexArray();
+			va->setActive();
+			glDrawElements(GL_TRIANGLES, va->getNbIndices(), GL_UNSIGNED_INT, nullptr);
+		}
 	}
 }

@@ -6,7 +6,7 @@
 
 GameCube::GameCube(float widthP, float heightP, int typeP) : Tile(widthP, heightP, typeP)
 {
-	meshComponent->setMesh(Assets::getMesh("GameCube_Tile"));
+	animMeshComponent->setMesh(Assets::getMesh("GameCube_Tile"));
 
 	setTexture();
 }

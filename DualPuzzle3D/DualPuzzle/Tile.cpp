@@ -35,6 +35,11 @@ void Tile::setTexture()
 		animTextures.push_back(&Assets::getTexture("A_Start_1"));
 		animTextures.push_back(&Assets::getTexture("A_Start_2"));
 	}
+	else if (type == TileType::B_START) {
+		animTextures.push_back(&Assets::getTexture("B_Start_0"));
+		animTextures.push_back(&Assets::getTexture("B_Start_1"));
+		animTextures.push_back(&Assets::getTexture("B_Start_2"));
+	}
 
 	animMeshComponent->setAnimTextures(animTextures);
 }

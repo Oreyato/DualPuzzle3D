@@ -59,6 +59,9 @@ void Game::load()
 	Assets::loadTexture(renderer, "Res\\Textures\\A_End.png", "A_End");
 
 	Assets::loadTexture(renderer, "Res\\Textures\\B_Start.png", "B_Start");
+	Assets::loadTexture(renderer, "Res\\Textures\\B_Start_0.png", "B_Start_0");
+	Assets::loadTexture(renderer, "Res\\Textures\\B_Start_1.png", "B_Start_1");
+	Assets::loadTexture(renderer, "Res\\Textures\\B_Start_2.png", "B_Start_2");
 	Assets::loadTexture(renderer, "Res\\Textures\\B_End.png", "B_End");
 
 	Assets::loadTexture(renderer, "Res\\Textures\\Obstacle.png", "Obstacle");

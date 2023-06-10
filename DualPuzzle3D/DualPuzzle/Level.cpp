@@ -116,8 +116,8 @@ void Level::update(float dt)
 
 		for (Vector3 pos : playersPos) {
 			if (playerPos == pos) {
-				playerPos = character->getPreviousPosition();
-				character->setPosition(playerPos);
+				Vector3 previousPos = character->getPreviousPosition();
+				character->setPosition(previousPos);
 			}
 		}
 

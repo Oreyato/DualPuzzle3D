@@ -177,6 +177,8 @@ void Level::clean()
 
 void Level::fillLayouts()
 {
+	int levelIndex = -1;
+
 	levelLayouts.emplace_back(Layout{
 		0,
 		{
@@ -192,9 +194,25 @@ void Level::fillLayouts()
 		},
 		9,
 		14
-		});
+	});
 	levelLayouts.emplace_back(Layout{
-		1,
+		levelIndex++,
+		{
+			7,	7,	7,	7,	7,	7,	7,	7,	7,	7,
+			7,	1,	1,	1,	1,	1,	1,	1,	1,	7,
+			7,	1,	1,	1,	5,	1,	1,	1,	1,	7,
+			7,	1,	6,	6,	1,	1,	1,	6,	1,	7,
+			7,	1,	2,	6,	3,	1,	4,	6,	1,	7,
+			7,	1,	1,	6,	1,	1,	6,	6,	1,	7,
+			7,	1,	1,	1,	1,	1,	1,	1,	1,	7,
+			7,	1,	1,	1,	1,	1,	1,	1,	1,	7,
+			7,	7,	7,	7,	7,	7,	7,	7,	7,	7
+		},
+		9,
+		10
+	});
+	levelLayouts.emplace_back(Layout{
+		levelIndex++,
 		{
 			7,	7,	7,	7,	7,	7,	7,	7,	7,	7,	7,	7,	7,	7,
 			7,	6,	6,	6,	6,	1,	1,	1,	1,	6,	4,	1,	1,	7,
@@ -210,7 +228,7 @@ void Level::fillLayouts()
 		14
 	});
 	levelLayouts.emplace_back(Layout{
-		2,
+		levelIndex++,
 		{
 			7,	7,	7,	7,	7,	7,	7,	7,	7,	7,	7,	7,	7,	7,
 			7,	1,	4,	1,	1,	6,	1,	1,	1,	1,	1,	1,	1,	7,
@@ -226,7 +244,7 @@ void Level::fillLayouts()
 		14
 	});
 	levelLayouts.emplace_back(Layout{
-		3,
+		levelIndex++,
 		{
 			7,	7,	7,	7,	7,	7,	7,	7,	7,	7,	7,	7,	7,	7,
 			7,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	7,
@@ -258,7 +276,7 @@ void Level::fillLayouts()
 		14
 	});
 	levelLayouts.emplace_back(Layout{
-		4,
+		levelIndex++,
 		{
 			7,	7,	7,	7,	7,	7,	7,	7,	7,	7,	7,	7,	7,	7,
 			7,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	7,

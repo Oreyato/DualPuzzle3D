@@ -18,11 +18,20 @@ Tile::Tile(float widthP, float heightP, int typeP) :
 	setTexture();
 }
 
-void Tile::setTexture()
+void Tile::setType(TileType typeP)
 {
-	//meshComponent->setTextureIndex(type);
-	animMeshComponent->setTextureIndex(type);
+	type = typeP;
+	setTexture();
+}
 
+void Tile::setType(int typeP)
+{
+	type = typeP;
+	setTexture();
+}
+
+void Tile::setAnimatedTexture()
+{
 	std::vector<Texture*> animTextures;
 
 	if (type == TileType::LIMIT) {
@@ -42,4 +51,10 @@ void Tile::setTexture()
 	}
 
 	animMeshComponent->setAnimTextures(animTextures);
+}
+
+void Tile::setTexture()
+{
+	//meshComponent->setTextureIndex(type);
+	animMeshComponent->setTextureIndex(type);
 }

@@ -17,7 +17,8 @@ enum TileType {
 	B_END,
 
 	OBSTACLE,
-	LIMIT
+	LIMIT,
+	START
 };
 
 class Tile : public Actor
@@ -26,8 +27,10 @@ public:
 	Tile(float widthP, float heightP, int typeP = TileType::DEFAULT);
 
 	inline const int getType() { return type; }
-	inline void setType(TileType typeP) { type = typeP; }
-	inline void setType(int typeP) { type = typeP; }
+	void setType(TileType typeP);
+	void setType(int typeP);
+
+	void setAnimatedTexture();
 
 protected:
 	float width{ 0.0f };

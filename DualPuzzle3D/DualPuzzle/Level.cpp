@@ -45,11 +45,7 @@ void Level::generateLevel()
 			Vector3 pos{ col * tileLength - offset.x, row * tileWidth - offset.y, .0f };
 
 			tile->setPosition(pos);
-			tile->setType(TileType::A_START);
-
-			level.push_back(tile);
-
-			index++;
+			tile->setAnimatedTexture();
 
 			// -- Create GameCubes --
 			if (desc != TileType::LIMIT) {
@@ -81,6 +77,8 @@ void Level::generateLevel()
 							movableCube->setType(MovableGameCube::Type::B);
 						}
 
+						movableCube->setAnimatedTexture();
+
 						playerCharacters.push_back(movableCube);
 						actors.push_back(movableCube);
 					}
@@ -96,6 +94,9 @@ void Level::generateLevel()
 					}
 				}
 			}
+
+			level.push_back(tile);
+			index++;
 		}
 	}
 

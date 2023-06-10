@@ -7,7 +7,7 @@ Created using a custom OpenGL engine, that you can find [here](https://github.co
 ### WIP
 - [ ] Collisions between characters
 - [ ] Better menu navigation
-- [ ] Differenciate playable cubes textures and their spawning point texture
+- [x] Differenciate playable cubes textures and their spawning point texture
 
 - [ ] Animated textures
     - [x] Base code implementation

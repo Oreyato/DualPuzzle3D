@@ -9,6 +9,8 @@
 TileGridInputComponent::TileGridInputComponent(Actor* ownerP) :
 	Component{ ownerP, 10 },
 
+	needUpdate{ false },
+
 	levelLayout{},
 
 	movementUnit{ Consts::Tile::LENGTH },
@@ -27,29 +29,38 @@ void TileGridInputComponent::processInput(const InputState& inputState)
 
 	if (inputState.keyboard.getKeyState(topKey) == ButtonState::Pressed) {
 		direction.y = -1;
+		needUpdate = true;
 	}
 	if (inputState.keyboard.getKeyState(downKey) == ButtonState::Pressed) {
 		direction.y = 1;
+		needUpdate = true;
 	}
 	if (inputState.keyboard.getKeyState(leftKey) == ButtonState::Pressed) {
 		direction.x = -1;
+		needUpdate = true;
 	}
 	if (inputState.keyboard.getKeyState(rightKey) == ButtonState::Pressed) {
 		direction.x = 1;
+		needUpdate = true;
 	}
 }
 
 void TileGridInputComponent::update(float dt)
 {
-	Vector3 newPosition = owner.getPosition();
-	newPosition += Vector3{ direction.x * movementUnit, direction.y * movementUnit, 0.0f };
-
-	if (canMoveTo(newPosition))
+	if (needUpdate)
 	{
-		owner.setPosition(newPosition);
-	}
+		Vector3 newPosition = owner.getPosition();
+		newPosition += Vector3{ direction.x * movementUnit, direction.y * movementUnit, 0.0f };
 
-	direction = Vector2::zero;
+		if (canMoveTo(newPosition))
+		{
+			owner.setPosition(newPosition);
+		}
+
+		direction = Vector2::zero;
+
+		needUpdate = false;
+	}
 }
 
 bool TileGridInputComponent::canMoveTo(Vector3 targetPositionP)

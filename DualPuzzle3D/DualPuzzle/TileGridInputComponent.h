@@ -26,6 +26,8 @@ public:
 	void setLevelLayout(Layout layoutP);
 
 private:
+	bool needUpdate;
+
 	float movementUnit;
 	Vector2 direction;
 

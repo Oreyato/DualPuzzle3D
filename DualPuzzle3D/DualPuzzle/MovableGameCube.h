@@ -25,7 +25,7 @@ public:
 
     inline Vector3 getPreviousPosition() { return previousPosition; }
 
-    void setPosition(Vector3 positionP);
+    void setPosition(Vector3 positionP) override;
 
 protected:
     TileGridInputComponent* tileGridInputComponent;
